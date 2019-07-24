@@ -1,7 +1,8 @@
 import React from 'react';
 import {
   BrowserRouter,
-  Route
+  Route,
+  Switch
 } from 'react-router-dom';
 
 
@@ -11,16 +12,21 @@ import Home from './Home'
 import Cats from './Cats'
 import Dogs from './Dogs'
 import Computers from './Computers'
+import NotFound from './NotFound'
 
 const App = () => (
   <BrowserRouter>
     <div className="container">
       <Search />
       <Nav />
-      <Route exact path="/" component={Home} />
-      <Route path="/cats" component={Cats} />
-      <Route path="/dogs" component={Dogs} />
-      <Route path="/computers" component={Computers} />
+      
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route path="/cats" component={Cats} />
+        <Route path="/dogs" component={Dogs} />
+        <Route path="/computers" component={Computers} />
+        <Route component={NotFound} />
+      </Switch>  
     </div>
   </BrowserRouter>
 )
