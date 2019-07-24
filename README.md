@@ -1,6 +1,16 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## React Gallery
 
-## Available Scripts
+**Welcome users!**
+
+This app was created using the React library to create an image gallery. 
+
+Some of the stack includes: 
+  - JavaScript
+  - React 
+  - JSX
+  - Axios
+
+
 
 In the project directory, you can run:
 
