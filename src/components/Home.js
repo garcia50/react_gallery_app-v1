@@ -1,21 +1,43 @@
 import React from 'react';
+import { Consumer } from './Context';
 
-const Home = props => {
-  cosnt results = props.data; 
-  let imgs = results.map(img => 
-    <li>
-      <img src={img.data.data.src} />
-    </li>
-  );
+const Home = () => {
+  // console.log('checking Home props***', props);
+  return (
+    <Consumer>
+      { context => {
+        const test = context('fish');
 
-  return(
-    <ul class="photo-container">
-      <h2>Results</h2>
-      {imgs}
-    </ul>
+        if (test) { 
+          console.log('teseesesesettttt', test);
+        }
 
+
+        // let photos = []
+
+        // const results = props.data.photos 
+        // if (results) { 
+        //   photos = results.photo;
+        // }
+
+        // let imgs = photos.map(img => 
+        //   <li>
+        //     <img src={`https://farm${img.farm}.staticflickr.com/${img.server}/${img.id}_${img.secret}.jpg`} alt='' key={img.id} />
+        //   </li>
+        // );
+
+        // return(
+        //   <div className="photo-container">
+        //     <h2>Results</h2>
+        //     <ul>
+        //       {imgs}
+        //     </ul>
+        //   </div>
+        // )
+      }}  
+    </Consumer>
   )
-
 }
 
 export default Home;
+
