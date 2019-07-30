@@ -1,14 +1,12 @@
 import React from 'react';
 
-const Photo = (props) => (
-  <div className="photo-container">
-    <h2>Results</h2>
-    <ul>
-      <li>
-        <img src="{props.img}" alt="{props.alt}" id="{props.id}" />
-      </li>
-    </ul>
-  </div>
+const Photo = ({ farm, server, id, secret, title }) => (
+  const ImageUrl = `https://farm${farm}.staticflickr.com/${server}/${id}_${secret}.jpg` ;
+  return (
+    <li>
+      <img key={id} src={ImageUrl} alt={title}  />
+    </li>
+  );
 );
 
 export default Photo;

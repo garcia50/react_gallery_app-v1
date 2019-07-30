@@ -3,16 +3,13 @@ import apiKey from '../config.js';
 import axios from 'axios';
 import {
   BrowserRouter,
-  Route,
-  Switch
+  Switch,
+  Route
 } from 'react-router-dom';
 
 import SearchForm from './SearchForm'
 import Nav from './Nav'
-import Home from './Home'
-import Cats from './Cats'
-import Dogs from './Dogs'
-import Computers from './Computers'
+import Gallery from './Gallery'
 import NotFound from './NotFound'
 
 export default class App extends Component {
@@ -23,19 +20,16 @@ export default class App extends Component {
       imgs: [],
       loading: true
     };
-    // this.performSearch('sky');
+    // this.performSearch();
   }
 
   componentDidMount() {
-    this.performSearch('sky');
+    this.performSearch();
   }
 
-  performSearch = (query) => {
-    // this.setState({imgs: []});
+  performSearch = (query = 'scenic') => {
     axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=24&format=json&nojsoncallback=1`)
     .then(response => {
-      console.log(response);
-      console.log('checking response in App', query, response.data.photos.photo);
       this.setState({
         imgs: response.data.photos.photo,
         loading: false,
@@ -51,16 +45,17 @@ export default class App extends Component {
       <BrowserRouter>
         <div className="container">
           <SearchForm onSearch={this.performSearch} />
-          <Nav />
+          <Nav onClick={this.performSearch}/>
           {
             (this.state.loading)
             ? <h3>Loading...</h3>
             : 
             <Switch>
-              <Route exact path="/" render={ () => <Home data={this.state.imgs} /> } />  
-              <Route path="/cats" render={ () => <Cats onSearch={this.performSearch} data={this.state.imgs} /> } /> 
-              <Route path="/dogs" component={Dogs} />
-              <Route path="/computers" component={Computers} />
+              <Route exact path="/" render={ () => <Gallery title="Gallery" data={this.state.imgs} /> } /> 
+              <Route path="/space" render={ () => <Gallery title="Space" data={this.state.imgs} /> } /> 
+              <Route path="/food" render={ () => <Gallery title="Food" data={this.state.imgs} /> } /> 
+              <Route path="/animals" render={ () => <Gallery title="Animals" data={this.state.imgs} /> } /> 
+              <Route path="/:query" render={ ({match}) => <Gallery title={match.params.query.toUpperCase()} data={this.state.imgs} /> } /> 
               <Route component={NotFound} />
             </Switch>  
           }
@@ -70,5 +65,3 @@ export default class App extends Component {
   }
 }
 
-  //render={ () => <Home onStart={this.performSearch('sky')} data={this.state.imgs} /> } />
-  // onStart={this.performSearch('sky')}
