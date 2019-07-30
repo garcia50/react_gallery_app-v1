@@ -1,3 +1,4 @@
+//import the libraries and routes
 import React from 'react';
 import NotFound from './NotFound';
 import Photos from './Photos'
@@ -5,7 +6,7 @@ import Photos from './Photos'
 const Gallery = (props) => {
   const results = props.data
   let photos;
-
+  //Make sure results is populated if not render the not found component
   if (results.length > 0) { 
     photos = results.map(img => 
       <Photos 
@@ -21,6 +22,7 @@ const Gallery = (props) => {
   }
 
   return(
+    //create ul element and use props and photos variable to access and pass info
     <div className="photo-container">
       <h1>{props.title}</h1>
       <ul>

@@ -1,3 +1,4 @@
+//import libraries
 import React, { Component } from 'react';
 import {withRouter} from 'react-router-dom'
 
@@ -5,11 +6,11 @@ class SearchForm extends Component {
   state = {
     searchText: ''
   }
-
+  //Set the users query to the state of this class
   onSearchChange = e => {
     this.setState({ searchText: e.target.value });
   }
-
+  //Takes users query and passes it back to parent to obtain api data
   handleSubmit = e => {
     e.preventDefault();
     let query = this.query.value;
@@ -20,6 +21,7 @@ class SearchForm extends Component {
   }
 
   render() {
+    //Create input "search" form/allow users to make searches
     return (
       <form className="search-form" onSubmit={this.handleSubmit} >
         <input type="search" 
