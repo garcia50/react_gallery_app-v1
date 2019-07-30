@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import {withRouter} from 'react-router-dom'
 
 class SearchForm extends Component {
-
   state = {
     searchText: ''
   }
@@ -12,7 +11,6 @@ class SearchForm extends Component {
   }
 
   handleSubmit = e => {
-    console.log();
     e.preventDefault();
     let query = this.query.value;
     let path = `${query}`;
