@@ -11,7 +11,6 @@ import SearchForm from './SearchForm'
 import Nav from './Nav'
 import Gallery from './Gallery'
 import NotFound from './NotFound'
-import QuerySearch from './QuerySearch'
 
 export default class App extends Component {
 
@@ -38,6 +37,7 @@ export default class App extends Component {
     .catch(error => {
       console.log('Error fetching and parsing data', error);
     });
+    return (this.imgs)
   }
 
   render() {
@@ -55,7 +55,7 @@ export default class App extends Component {
               <Route path="/space" render={ () => <Gallery title="Space" data={this.state.imgs} /> } /> 
               <Route path="/food" render={ () => <Gallery title="Food" data={this.state.imgs} /> } /> 
               <Route path="/animals" render={ () => <Gallery title="Animals" data={this.state.imgs} /> } /> 
-              <Route path="/:query" render={ ({match}) => <QuerySearch query={match} search={this.performSearch} data={this.state.imgs} /> } /> 
+              <Route path="/:query" render={ ({match}) => <Gallery search={this.performSearch(match.params.query)} title={match.params.query.toUpperCase()} data={this.state.imgs} /> } />  
               <Route component={NotFound} />
             </Switch>  
           }
@@ -64,17 +64,3 @@ export default class App extends Component {
     );
   }
 }
-              // <Route path="/:query" render={ ({match}) => <QuerySearch data={match} /> } /> 
-
-              // <Route path="/:query" render={ ({match}) => <Gallery title={match.params.query.toUpperCase()} data={this.state.imgs} /> } /> 
-
-
-
-
-
-
-
-
-
-
-
