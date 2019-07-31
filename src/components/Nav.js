@@ -6,6 +6,7 @@ export default class Nav extends Component {
   //Aquire the name of the default links and append it to the defaultLink variable
   defaultLink = e => {
     this.props.onClick(e.target.innerText);
+    this.props.istrue(true);
   }
 
   render() {

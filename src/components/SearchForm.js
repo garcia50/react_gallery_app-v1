@@ -14,9 +14,13 @@ class SearchForm extends Component {
   handleSubmit = e => {
     e.preventDefault();
     let query = this.query.value;
-    let path = `${query}`;
-    this.props.history.push(path);
-    this.props.onSearch(this.state.searchText);
+
+    if (query.length > 0) {
+      let path = `${query}`;
+      this.props.history.push(path);
+      this.props.onSearch(this.state.searchText, true);
+    }
+    
     e.currentTarget.reset();
   }
 
@@ -38,7 +42,6 @@ class SearchForm extends Component {
       </form>
     )
   }
-
 }
 
 export default withRouter(SearchForm)
